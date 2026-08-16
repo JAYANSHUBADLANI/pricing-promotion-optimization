@@ -1,0 +1,27 @@
+{
+  "sampler": "blocked Gibbs with slice steps on group scales",
+  "max_r_hat": 1.01,
+  "min_ess_bulk": 426.0,
+  "n_draws_total": 4000,
+  "n_chains": 4,
+  "n_parameters": 243,
+  "n_observations": 522154,
+  "residual_sigma_by_category": {
+    "BAG SNACKS": 0.6828902437998047,
+    "COLD CEREAL": 0.5705787024891067,
+    "FROZEN PIZZA": 0.6613810694112314,
+    "ORAL HYGIENE PRODUCTS": 0.6294681953355296
+  },
+  "unpooled_ols_own_price": {
+    "mean": -1.639642646788597,
+    "min": -3.273492841903931,
+    "max": 0.8188936917880782,
+    "n_positive": 3
+  },
+  "pooled_posterior_own_price": {
+    "mean": -1.64590505802008,
+    "min": -3.2443152646684603,
+    "max": 0.78252435085544,
+    "n_positive": 3
+  }
+}

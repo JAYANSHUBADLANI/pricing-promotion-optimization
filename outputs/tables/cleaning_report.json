@@ -1,0 +1,43 @@
+{
+  "n_rows_in": 524950,
+  "n_rows_out": 522154,
+  "n_rows_removed": 2796,
+  "share_removed": 0.005326221544909039,
+  "steps": [
+    {
+      "step": "drop_missing_price",
+      "rows_removed": 208,
+      "share_removed": 0.00039622821221068673,
+      "rows_remaining": 524742,
+      "reason": "shelf price or base price absent, so no price signal exists for the row"
+    },
+    {
+      "step": "drop_non_positive_price",
+      "rows_removed": 1,
+      "share_removed": 1.904943327935994e-06,
+      "rows_remaining": 524741,
+      "reason": "a price at or below zero cannot enter a log price model"
+    },
+    {
+      "step": "drop_non_positive_units",
+      "rows_removed": 0,
+      "share_removed": 0.0,
+      "rows_remaining": 524741,
+      "reason": "log of units is undefined at zero, and these rows carry zero spend"
+    },
+    {
+      "step": "drop_price_far_above_base",
+      "rows_removed": 1002,
+      "share_removed": 0.001908753214591866,
+      "rows_remaining": 523739,
+      "reason": "shelf price more than 10% above base price. Small overshoots are credible as a lagging base price, large ones are not"
+    },
+    {
+      "step": "drop_implausible_discount",
+      "rows_removed": 1585,
+      "share_removed": 0.0030193351747785503,
+      "rows_remaining": 522154,
+      "reason": "discount deeper than 60%, treated as a data error rather than a promotion"
+    }
+  ]
+}

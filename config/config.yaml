@@ -1,0 +1,111 @@
+# Single source of truth for the pipeline. No stage takes a tunable from code.
+
+project:
+  name: pricing-promotion-optimization
+  random_seed: 42
+
+data:
+  # dunnhumby "Breakfast at the Frat", distributed as one workbook with three
+  # data sheets plus a glossary. Fetch it from https://www.dunnhumby.com/source-files/
+  workbook_name: "dunnhumby - Breakfast at the Frat.xlsx"
+  sheets:
+    transactions: "dh Transaction Data"
+    stores: "dh Store Lookup"
+    products: "dh Products Lookup"
+    glossary: "Glossary"
+  # Every sheet carries a title banner in row 1, so the real header is row 2.
+  header_row: 1
+  raw_dir: data/raw
+  interim_dir: data/interim
+  processed_dir: data/processed
+  # Checked against the workbook on ingest rather than assumed. Sourced from the
+  # verification run, not from the dataset documentation.
+  expected:
+    n_rows: 524950
+    n_stores: 77
+    n_products: 55
+    n_weeks: 156
+    date_min: "2009-01-14"
+    date_max: "2012-01-04"
+    categories: 4
+
+cleaning:
+  drop_zero_units: true
+  drop_missing_price: true
+  # A small share of rows carry a shelf price above the stated base price. Mild
+  # cases are legitimate base price lag, extreme ones are not credible.
+  max_price_above_base: 0.10
+  # Depths beyond this are treated as data errors rather than promotions.
+  max_discount_depth: 0.60
+  min_price: 0.01
+
+features:
+  # Discount depth is measured, not constructed: both PRICE and BASE_PRICE ship
+  # with the data, so there is no need to derive a price from revenue over units
+  # and no risk of the division bias that construction would introduce.
+  discount_from_base_price: true
+  fourier_terms: 3
+  seasonality_period_weeks: 52.18
+  # Cannibalisation: for each row, the mean log price of the other products in
+  # the same sub-category, store and week. Its coefficient is the cross-price
+  # elasticity and drives the net-of-cannibalisation haircut.
+  competing_price_scope: sub_category
+  min_competitors: 1
+  holiday_weeks_iso: [1, 21, 27, 36, 47, 52]
+
+elasticity:
+  # The likelihood is expressed through per category sufficient statistics, so
+  # sampling cost depends on the number of coefficients rather than the 500k plus
+  # rows. This is what makes full Bayesian inference practical here.
+  draws: 1000
+  tune: 1000
+  chains: 4
+  target_accept: 0.9
+  prior_elasticity_mean: -2.0
+  prior_elasticity_sd: 1.5
+  prior_group_sd: 0.5
+  prior_upc_intercept_sd: 3.0
+  prior_store_intercept_sd: 1.5
+  prior_cross_mean: 0.3
+  prior_cross_sd: 0.5
+
+lift:
+  mechanics: [tpr_only, display_only, feature_only, feature_and_display]
+  baseline_state: no_promo
+
+backtest:
+  holdout_weeks: 13
+
+optimizer:
+  objective: margin
+  max_discount: 0.40
+  min_discount: 0.0
+  gross_margin_at_list: 0.35
+  # No cost data ships with this dataset, so gross margin is an assumption and
+  # the recommendation is swept across this range rather than resting on one number.
+  margin_sensitivity: [0.20, 0.25, 0.30, 0.35, 0.40, 0.45, 0.50]
+  min_margin_floor: 0.15
+  max_concurrent_promos: 3
+  promo_cap_threshold: 0.05
+  n_multistart: 20
+  allow_mechanics: [none, tpr_only, display_only, feature_only, feature_and_display]
+  apply_cannibalisation_haircut: true
+
+reporting:
+  figures_dir: outputs/figures
+  tables_dir: outputs/tables
+  models_dir: outputs/models
+  figure_dpi: 150
+
+# Execution cost of each promotional mechanic, as a fraction of the shelf's
+# baseline revenue. The dataset records whether a display or a circular ran but
+# not what either cost, so these are assumptions and are swept rather than
+# asserted. They matter: with merchandising free, the plan always recommends the
+# most heavily supported option.
+mechanic_costs:
+  none: 0.0
+  tpr_only: 0.002
+  display_only: 0.020
+  feature_only: 0.030
+  feature_and_display: 0.045
+  sensitivity_multipliers: [0.5, 1.0, 2.0, 4.0]

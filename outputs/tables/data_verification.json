@@ -1,0 +1,196 @@
+{
+  "shape": {
+    "n_rows": 524950,
+    "n_columns": 25,
+    "n_stores": 77,
+    "n_products": 55,
+    "n_weeks": 156,
+    "n_categories": 4,
+    "n_sub_categories": 7,
+    "n_manufacturers": 16
+  },
+  "coverage": {
+    "date_min": "2009-01-14",
+    "date_max": "2012-01-04",
+    "full_grid_rows": 660660,
+    "panel_completeness": 0.7945842036751127,
+    "weeks_per_store_product_median": 149.0,
+    "weeks_per_store_product_min": 1,
+    "n_store_product_pairs": 3909
+  },
+  "integrity": {
+    "duplicate_keys": 0,
+    "null_counts": {
+      "price": 23,
+      "base_price": 185,
+      "parking_spaces": 359155
+    },
+    "n_zero_units": 5,
+    "n_negative_units": 0,
+    "n_non_positive_price": 1,
+    "n_non_positive_base_price": 0,
+    "price_vs_spend_per_unit": {
+      "median_relative_error": 0.0,
+      "share_within_1pct": 0.9999542813601295,
+      "share_within_5pct": 0.9999542813601295
+    }
+  },
+  "identification": {
+    "distinct_prices_per_store_product_median": 25.0,
+    "distinct_prices_per_store_product_q25": 15.0,
+    "within_pair_price_cv_median": 0.10902649860429023,
+    "share_pairs_with_single_price": 0.005116398055768739
+  },
+  "discount_depth": {
+    "q00": -1.397260273972603,
+    "q01": -0.006802721088435382,
+    "q25": 0.0,
+    "q50": 0.0,
+    "q75": 0.03474903474903468,
+    "q90": 0.23747276688453156,
+    "q95": 0.3220338983050848,
+    "q99": 0.4285714285714286,
+    "q100": 1.0,
+    "mean": 0.05719843232329299,
+    "share_zero": 0.7312658348414135,
+    "share_positive": 0.2568187446423469,
+    "share_price_above_base": 0.011519192304028956,
+    "share_above_60pct": 0.0030212401181064865
+  },
+  "promo_states": {
+    "no_promo": {
+      "n_rows": 375564,
+      "share_of_rows": 0.7154281360129536,
+      "mean_discount_depth": 0.0,
+      "median_discount_depth": 0.0,
+      "mean_units": 15.134009116954767
+    },
+    "tpr_only": {
+      "n_rows": 70734,
+      "share_of_rows": 0.1347442613582246,
+      "mean_discount_depth": 0.2182278796975614,
+      "median_discount_depth": 0.18778280542986425,
+      "mean_units": 17.797311052676225
+    },
+    "display_only": {
+      "n_rows": 34401,
+      "share_of_rows": 0.06553195542432613,
+      "mean_discount_depth": 0.11510461218003995,
+      "median_discount_depth": 0.09420289855072461,
+      "mean_units": 34.01395308275922
+    },
+    "feature_only": {
+      "n_rows": 20837,
+      "share_of_rows": 0.03969330412420231,
+      "mean_discount_depth": 0.22817366883066015,
+      "median_discount_depth": 0.23121387283236994,
+      "mean_units": 34.321735374574075
+    },
+    "feature_and_display": {
+      "n_rows": 23414,
+      "share_of_rows": 0.04460234308029336,
+      "mean_discount_depth": 0.25176353369775095,
+      "median_discount_depth": 0.2613981762917933,
+      "mean_units": 62.58708465020928
+    }
+  },
+  "promo_state_coverage": {
+    "rows_in_named_states": 524950,
+    "rows_outside_named_states": 0
+  },
+  "categories": {
+    "BAG SNACKS": 15,
+    "COLD CEREAL": 15,
+    "FROZEN PIZZA": 12,
+    "ORAL HYGIENE PRODUCTS": 13
+  },
+  "sub_categories": {
+    "ADULT CEREAL": 3,
+    "ALL FAMILY CEREAL": 7,
+    "KIDS CEREAL": 5,
+    "MOUTHWASH/RINSES AND SPRAYS": 5,
+    "MOUTHWASHES (ANTISEPTIC)": 8,
+    "PIZZA/PREMIUM": 12,
+    "PRETZELS": 15
+  },
+  "store_segments": {
+    "MAINSTREAM": 41,
+    "VALUE": 19,
+    "UPSCALE": 15,
+    "CONFLICTING SOURCE VALUES": 2
+  },
+  "states": {
+    "TX": 41,
+    "OH": 31,
+    "KY": 4,
+    "IN": 1
+  },
+  "units": {
+    "q00": 0.0,
+    "q01": 1.0,
+    "q25": 4.0,
+    "q50": 10.0,
+    "q75": 24.0,
+    "q90": 45.0,
+    "q95": 66.0,
+    "q99": 138.0,
+    "q100": 1800.0,
+    "mean": 19.608256024383273
+  },
+  "claim_checks": {
+    "n_rows": {
+      "expected": 524950,
+      "actual": 524950,
+      "match": true
+    },
+    "n_stores": {
+      "expected": 77,
+      "actual": 77,
+      "match": true
+    },
+    "n_products": {
+      "expected": 55,
+      "actual": 55,
+      "match": true
+    },
+    "n_weeks": {
+      "expected": 156,
+      "actual": 156,
+      "match": true
+    },
+    "date_min": {
+      "expected": "2009-01-14",
+      "actual": "2009-01-14",
+      "match": true
+    },
+    "date_max": {
+      "expected": "2012-01-04",
+      "actual": "2012-01-04",
+      "match": true
+    }
+  },
+  "all_claims_match": true,
+  "lookup_conflicts": {
+    "stores": [
+      {
+        "key": "store_id",
+        "key_value": 4503,
+        "column": "store_segment",
+        "values": [
+          "MAINSTREAM",
+          "UPSCALE"
+        ]
+      },
+      {
+        "key": "store_id",
+        "key_value": 17627,
+        "column": "store_segment",
+        "values": [
+          "MAINSTREAM",
+          "UPSCALE"
+        ]
+      }
+    ],
+    "products": []
+  }
+}

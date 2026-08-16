@@ -1,0 +1,5 @@
+cost_multiplier,n_promoted,margin_delta_pct,mechanics_chosen
+0.5,3,60.60819806670447,feature_and_display
+1.0,3,56.92012952164876,feature_and_display
+2.0,3,49.54399243153742,feature_and_display
+4.0,3,34.79171825131469,feature_and_display

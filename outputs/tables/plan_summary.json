@@ -1,0 +1,51 @@
+{
+  "n_shelves": 7,
+  "n_promoted": 3,
+  "max_concurrent_promos": 3,
+  "gross_margin_assumed": 0.35,
+  "baseline_margin_per_store_week": 685.6768264257424,
+  "optimised_margin_per_store_week": 1075.9649641272058,
+  "margin_delta_pct": 56.92012952164876,
+  "revenue_delta_pct": 56.74719339892985,
+  "promoted_shelves": [
+    {
+      "shelf": "ADULT CEREAL",
+      "discount": 0.05,
+      "mechanic": "feature_and_display",
+      "net_elasticity": -1.1687671706652136
+    },
+    {
+      "shelf": "KIDS CEREAL",
+      "discount": 0.05,
+      "mechanic": "feature_and_display",
+      "net_elasticity": -2.098254502831124
+    },
+    {
+      "shelf": "PIZZA/PREMIUM",
+      "discount": 0.05,
+      "mechanic": "feature_and_display",
+      "net_elasticity": -2.629149109683247
+    }
+  ],
+  "shelves_left_alone": [
+    "ALL FAMILY CEREAL",
+    "MOUTHWASH/RINSES AND SPRAYS",
+    "MOUTHWASHES (ANTISEPTIC)",
+    "PRETZELS"
+  ],
+  "n_shelves_excluded_as_not_credible": 2,
+  "shelves_excluded_as_not_credible": [
+    {
+      "shelf": "ALL FAMILY CEREAL",
+      "own": -1.0741949571841354,
+      "cross": 1.5635462526337967,
+      "net": 0.48935129544966127
+    },
+    {
+      "shelf": "PRETZELS",
+      "own": -0.4472291037291708,
+      "cross": 1.185470263342436,
+      "net": 0.7382411596132653
+    }
+  ]
+}
